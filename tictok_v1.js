@@ -9,6 +9,8 @@ function setTokenExpiry(expiresIn) {
     tokenExpiryTime = Date.now() + expiresIn * 1000; 
     setTimeout(refreshAccessToken, (expiresIn - 300) * 1000); 
     console.log(`Token expires in ${expiresIn / 60} minutes.`);
+
+    console.log(refreshToken);
 }
 
 
@@ -96,40 +98,24 @@ function renderCarousel(videos) {
     let carouselHTML = '';
 
     videos.forEach((video) => {
-        const { embed_html, title, video_description, like_count, comment_count, share_count, view_count, share_url } = video;
+        const { embed_html } = video; // Only using the embed_html part for rendering
 
         carouselHTML += `
-            <div class="carousel-item">
-                <div class="embed-container">
-                    ${embed_html} <!-- Embed the video -->
-                </div>
-                <div class="tiktok-content-wrapper">
-                <h5>${title}</h5>
-                <p>${video_description}</p>
-                <div class="video-stats">
-                    <span>❤️ ${like_count}</span>
-                    <span>💬 ${comment_count}</span>
-                    <span>🔁 ${share_count}</span>
-                    <span>👁️ ${view_count}</span>
-                </div>
-                <a href="${share_url}" target="_blank" class="share-link">Watch on TikTok</a>
-            </div>
+            <div class="video-item">
+                ${embed_html} <!-- Embed the TikTok video -->
             </div>
         `;
     });
 
     carouselContainer.innerHTML = `
-        <div class="carousel-wrapper">
-            <button class="carousel-control prev">❮</button>
-            <div class="carousel-track">
-                ${carouselHTML}
-            </div>
-            <button class="carousel-control next">❯</button>
+        <div class="video-list">
+            ${carouselHTML}
         </div>
     `;
-
-    addCarouselFunctionality();
 }
+
+
+
 
 // Carousel functionality
 function addCarouselFunctionality() {
