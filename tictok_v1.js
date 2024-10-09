@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-let accessToken = 'act.TnPomscz0k9UfsIYsw5BQbwQbwCPAs5YmfdTsPjcFTpSVlhXkx7DfX5dyoBj!4571.va'; // Replace with your access token
+let accessToken = 'act.IuKqbE5CoIN9NxsY1VbIMDZCxq5AKJZIVIE8doc6Rzss4wsxGeToPaOp6YNf!4631.va'; // Replace with your access token
 let refreshToken = 'demo-refresh-token';
 let tokenExpiryTime;
 
@@ -23,7 +23,7 @@ function refreshAccessToken() {
         },
         body: new URLSearchParams({
             grant_type: 'refresh_token',
-            refresh_token: 'rft.XmLvWQskLzMsBiahUbgjYkzSc9cJGJXe5pbFEXfJXvLCCrNjqdiFOS58wUBL!4603.va',
+            refresh_token: 'rft.oTAsmZHycqjABtYh9LNkyg06FIpMh7vQtks4moy90lxDJWO7SO87lzJOjruh!4567.va',
             client_key: 'sbaw5eg838glrm3m2u',
             client_secret: '0LKbEy16sVKvuGO8v25Skiy8SEoFiaSZ'
         })
@@ -33,6 +33,7 @@ function refreshAccessToken() {
             accessToken = data.access_token;
             refreshToken = data.refresh_token || refreshToken;
             setTokenExpiry(data.expires_in);
+            console.log(accessToken);
             console.log('Token refreshed successfully');
         })
         .catch(error => {
